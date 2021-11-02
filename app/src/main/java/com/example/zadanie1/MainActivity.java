@@ -16,15 +16,27 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton;
     private TextView questionTextView;
     private int currentIndex = 0;
+    private static final String KEY_CURRENT_INDEX = "currentIndex";
     private static final String QUIZ_TAG = "MainActivity";
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(QUIZ_TAG,"Wywołana zostałą metoda: onSaveInstanceState");
+        outState.putInt(KEY_CURRENT_INDEX, currentIndex);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(QUIZ_TAG,"Zostałą wywołana metoda cyklu życia onCreate");
         trueButton = findViewById(R.id.true_button);
         falseButton = findViewById(R.id.false_button);
         nextButton = findViewById(R.id.next_button);
         questionTextView = findViewById(R.id.question_text_view);
+        if (savedInstanceState != null){
+            currentIndex = savedInstanceState.getInt(KEY_CURRENT_INDEX);
+        }
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(this,resultMessageId,Toast.LENGTH_SHORT).show();
     }
-    private void setNextQuestion(){
+    private void setNextQuestion() {
         questionTextView.setText(questions[currentIndex].getQuestionId());
     }
 }

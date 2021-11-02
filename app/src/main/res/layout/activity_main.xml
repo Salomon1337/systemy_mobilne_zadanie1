@@ -45,4 +45,12 @@
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:text="@string/button_next" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Podpowiedź"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"/>
 </LinearLayout>
